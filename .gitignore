@@ -1,0 +1,34 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+/build-lab2_with_distribution_by_files-Desktop_x86_windows_msvc2022_pe_64bit-Debug/.qtc_clangd
+/build-lab2_with_distribution_by_files-Desktop_x86_windows_msvc2022_pe_64bit-Debug
