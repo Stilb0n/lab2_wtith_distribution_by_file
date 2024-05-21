@@ -1,7 +1,8 @@
 #ifndef СlassUnit_CPP
 #define СlassUnit_CPP
-#include "unit.cpp"
-
+#include "unit.h"
+#include<vector>
+#include <memory>
 class ClassUnit: public Unit {
 public: enum AccessModifier {
         PUBLIC,

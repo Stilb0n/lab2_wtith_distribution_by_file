@@ -1,7 +1,8 @@
 #ifndef CLASSUNIT_H
 #define CLASSUNIT_H
-
-#include "unit.cpp"
+#include<vector>
+#include"unit.h"
+#include <memory>
 class ClassUnit: public Unit
 {
 public:

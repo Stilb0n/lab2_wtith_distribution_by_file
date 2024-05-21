@@ -1,7 +1,8 @@
 #include <QCoreApplication>
 #include<iostream>
-#include "ClassUnit.cpp"
-
+#include"methodunit.cpp"
+#include"ClassUnit.cpp"
+#include"unit.cpp"
 std::string generateProgram() {
     ClassUnit myClass("MyClass");
     myClass.add(
