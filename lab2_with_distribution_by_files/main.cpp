@@ -2,6 +2,7 @@
 #include<iostream>
 #include"methodunit.cpp"
 #include"ClassUnit.cpp"
+#include"printoperatorunit.h"
 #include"unit.cpp"
 std::string generateProgram() {
     ClassUnit myClass("MyClass");

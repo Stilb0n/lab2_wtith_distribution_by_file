@@ -2,7 +2,7 @@
 #define СlassUnit_CPP
 #include "unit.h"
 #include<vector>
-#include <memory>
+
 class ClassUnit: public Unit {
 public: enum AccessModifier {
         PUBLIC,
