@@ -5,7 +5,7 @@
 
 
 
- void Unit::add(const std::shared_ptr < Unit > & , Flags) {
+ void Unit::add(Unit * , Flags) {
         throw std::runtime_error("Not supported");
     }
 
