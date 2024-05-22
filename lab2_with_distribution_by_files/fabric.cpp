@@ -1,6 +1,3 @@
 #include "fabric.h"
 
-fabric::fabric()
-{
-
-}
+//fabric::fabric()

@@ -1,10 +1,13 @@
 #include <QCoreApplication>
 #include<iostream>
 #include"methodunit.cpp"
+//#include"ClassUnit.cpp"
 #include"ClassUnit.cpp"
 #include"printoperatorunit.h"
 #include"unit.cpp"
-std::string generateProgram() {
+#include "fabric.h"
+std::string generateProgram(Fabric* fabric) {
+      IClassUnit* classA = fabric->createClass("keek");
     ClassUnit myClass("MyClass");
     myClass.add(
         std::make_shared < MethodUnit > ("testFunc1", "void", 0),
@@ -23,15 +26,15 @@ std::string generateProgram() {
                                                MethodUnit::STATIC);
     method -> add(std::make_shared < PrintOperatorUnit > ( "(Hello, world!\n)"));
     myClass.add(method, ClassUnit::PROTECTED);
-    return myClass.compile();
+    return myClass.compile()+classA->compile();
 }
 
 
 int main(int argc, char *argv[])
 {
-
+    CsharpFabric* s = new CsharpFabric;
     QCoreApplication a(argc, argv);
-    std::cout << generateProgram() << std::endl;
+    std::cout << generateProgram(s) << std::endl;
 
     return a.exec();
 }
