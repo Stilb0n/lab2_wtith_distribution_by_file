@@ -8,7 +8,9 @@
 #include "fabric.h"
 std::string generateProgram(Fabric* fabric) {
       IClassUnit* classA = fabric->createClass("keek");
+     IMethodUnit* methodB = fabric->createMethod("testFunc1NEW", "void", 0);
     ClassUnit myClass("MyClass");
+     classA->add(methodB,0);
     myClass.add(
         std::make_shared < MethodUnit > ("testFunc1", "void", 0),
         ClassUnit::PUBLIC
