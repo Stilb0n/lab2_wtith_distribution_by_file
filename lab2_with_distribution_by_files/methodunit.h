@@ -43,15 +43,29 @@ public: CsharpMethodUnit( std::string  name,
                          flags);
 
     ~CsharpMethodUnit();
-    void add( Unit * dd , Flags)override {
-        m_body.push_back(dd);
-    };
+    void add( Unit * dd , Flags)override;
     std::string compile(unsigned int level = 0) const override;
 
     std::string m_name =" ";
     std::string m_returnType = " ";
     Flags m_flags;
     std::vector <  Unit * > m_body;};
+
+class CMethodUnit : public IMethodUnit {
+
+public: CMethodUnit( std::string  name,
+                std::string returnType, Flags
+                    flags);
+
+    ~CMethodUnit();
+    void add( Unit * dd , Flags)override;
+    std::string compile(unsigned int level = 0) const override;
+
+    std::string m_name =" ";
+    std::string m_returnType = " ";
+    Flags m_flags;
+    std::vector <  Unit * > m_body;};
+
 
 
 #endif // METHODUNIT_H

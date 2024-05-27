@@ -24,7 +24,6 @@ private: std::string m_name;
 class IClassUnit : public Unit { public: virtual void add(Unit* unit, Flags flags) = 0; };
 
 
-
 class CsharpClassUnit: public IClassUnit {
 public: enum AccessModifier {
         PUBLIC,
@@ -43,6 +42,29 @@ private: std::string m_name;
     using Fields = std::vector < Unit * > ;
     std::vector < Fields > m_fields;
 };
+
+
+
+class CClassUnit: public IClassUnit {
+public: enum AccessModifier {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE
+    };
+    static const std::vector < std::string > ACCESS_MODIFIERSC;
+public: explicit CClassUnit(const std::string & name);
+    ~CClassUnit ();
+    void add ( Unit *  method, Flags flags) override;
+    std::string  compile(unsigned int level = 0)  const override;
+private: std::string m_name;
+    using Fields = std::vector < Unit * > ;
+    std::vector < Fields > m_fields;
+};
+
+
+
+
+
 
 
 #endif // CLASSUNIT_H

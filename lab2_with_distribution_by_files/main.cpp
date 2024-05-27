@@ -54,8 +54,9 @@ std::string generateProgram(Fabric* fabric) { //mod
 int main(int argc, char *argv[])
 {
     CsharpFabric* s = new CsharpFabric;
+    CFabric* ss = new CFabric;
     QCoreApplication a(argc, argv);
-    std::cout << generateProgram(s) << std::endl;
-
+    std::cout << generateProgram(ss) << std::endl;
+    delete ss;
     return a.exec();
 }
