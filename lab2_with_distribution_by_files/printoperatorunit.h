@@ -18,10 +18,7 @@ class CsharpPrintOperatorUnit : public IPrintOperatorUnit {
 public:
 
     explicit CsharpPrintOperatorUnit(const std::string &text);
-    //   void add(Unit * dd , Flags)override {std::cout<<"YaEstGroot";}
     std::string compile(unsigned int level = 0) const override;
-    // std::string generateShift(unsigned int level) const override {    return "Compiled code: " + m_text;}
-
 
 private:
     std::string m_text;
@@ -31,9 +28,17 @@ class CPrintOperatorUnit : public IPrintOperatorUnit {
 public:
 
     explicit CPrintOperatorUnit(const std::string &text);
-    //   void add(Unit * dd , Flags)override {std::cout<<"YaEstGroot";}
     std::string compile(unsigned int level = 0) const override;
-    // std::string generateShift(unsigned int level) const override {    return "Compiled code: " + m_text;}
+
+private:
+    std::string m_text;
+};
+
+class JavaPrintOperatorUnit : public IPrintOperatorUnit {
+public:
+
+    explicit JavaPrintOperatorUnit(const std::string &text);
+    std::string compile(unsigned int level = 0) const override;
 
 
 private:

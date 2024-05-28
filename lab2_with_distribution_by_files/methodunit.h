@@ -66,6 +66,18 @@ public: CMethodUnit( std::string  name,
     Flags m_flags;
     std::vector <  Unit * > m_body;};
 
+class JavaMethodUnit : public IMethodUnit {
 
+public: JavaMethodUnit( std::string  name,
+                   std::string returnType, Flags
+                       flags);
+    ~JavaMethodUnit();
+    void add( Unit * dd , Flags)override;
+    std::string compile(unsigned int level = 0) const override;
+
+    std::string m_name =" ";
+    std::string m_returnType = " ";
+    Flags m_flags;
+    std::vector <  Unit * > m_body;};
 
 #endif // METHODUNIT_H

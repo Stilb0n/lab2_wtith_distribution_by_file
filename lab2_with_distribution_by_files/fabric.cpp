@@ -23,7 +23,7 @@ public:
         return CsharpMethodUnitPTR;
     }
     IPrintOperatorUnit*  createPrint2 ( std::string  text)override  {return new CsharpPrintOperatorUnit(text);}
-
+     ~CsharpFabric(){};
 };
 
 class CFabric: public Fabric {
@@ -40,6 +40,20 @@ public:
     }
     IPrintOperatorUnit*  createPrint2 ( std::string  text)override  {return new CPrintOperatorUnit(text);}
     ~CFabric(){}
+};
+
+class JavaFabric: public Fabric {
+
+public: IClassUnit* createClass(std::string name)override{
+        return new JavaClassUnit(name);
+    }
+    IMethodUnit* createMethod(std::string name, std::string vozvr, int Num) override {
+        IMethodUnit* JavaMethodUnitPTR = new JavaMethodUnit(name,vozvr, Num);
+
+        return JavaMethodUnitPTR;
+    }
+    IPrintOperatorUnit*  createPrint2 ( std::string  text)override  {return new JavaPrintOperatorUnit(text);}
+     ~JavaFabric(){};
 };
 
 

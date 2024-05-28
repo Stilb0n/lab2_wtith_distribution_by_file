@@ -61,7 +61,21 @@ private: std::string m_name;
     std::vector < Fields > m_fields;
 };
 
-
+class JavaClassUnit: public IClassUnit {
+public: enum AccessModifier {
+        PUBLIC,
+        PROTECTED,
+        PRIVATE
+    };
+    static const std::vector < std::string > ACCESS_MODIFIERS;
+public: explicit JavaClassUnit(const std::string & name);
+    ~JavaClassUnit ();
+    void add ( Unit *  method, Flags flags) override;
+    std::string  compile(unsigned int level = 0)  const override;
+private: std::string m_name;
+    using Fields = std::vector < Unit * > ;
+    std::vector < Fields > m_fields;
+};
 
 
 

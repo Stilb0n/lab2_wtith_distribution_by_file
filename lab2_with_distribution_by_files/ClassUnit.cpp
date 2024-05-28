@@ -4,6 +4,10 @@
 #include<vector>
 #include "ClassUnit.h"
 
+const std::vector< std::string > JavaClassUnit::ACCESS_MODIFIERS = { "public",
+                                                                  "protected", "private"};
+
+
 const std::vector < std::string > ClassUnit::ACCESS_MODIFIERS = {
     "public",
     "protected",
@@ -125,8 +129,43 @@ std::string CClassUnit::compile(unsigned int level) const {
   result += generateShift(level) + "};\n";
   return result;
 }
+JavaClassUnit::JavaClassUnit(const std::string & name): m_name(name) {
+        m_fields.resize(ACCESS_MODIFIERS.size());
+    }
+JavaClassUnit::~JavaClassUnit(){
+        for (  auto & elem : m_fields)
+        {
+    for (  auto & elem2 : elem )
+    {
+        delete (elem2);
+    }
+        }
+}
+ void JavaClassUnit::add ( Unit *  method, Flags flags){
+        int AccessModifier = PRIVATE;
+        if (flags < ACCESS_MODIFIERS.size()) {
+    AccessModifier = flags;
+        }
+        if (flags >= 3 )
+        {throw "wrong modifier";}
+        m_fields[AccessModifier].push_back(method);
+}
+ std::string  JavaClassUnit::compile(unsigned int level)  const {
+        std::string result = generateShift(level) + "class " + m_name + " {\n";
 
+        for (size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i) {
+    if (m_fields[i].empty()) {
+        continue;
+    }
 
-
+    for (const auto & f: m_fields[i]) {
+        result += ACCESS_MODIFIERS[i];
+        result += f -> compile(level + 1);
+    }
+    result += "\n";
+        }
+        result += generateShift(level) + "};\n";
+        return result;
+ }
 
 #endif

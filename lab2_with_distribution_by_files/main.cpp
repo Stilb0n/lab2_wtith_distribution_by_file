@@ -53,10 +53,13 @@ std::string generateProgram(Fabric* fabric) { //mod
 
 int main(int argc, char *argv[])
 {
-    CsharpFabric* s = new CsharpFabric;
-    CFabric* ss = new CFabric;
+    CsharpFabric* Csharp = new CsharpFabric;
+    CFabric* C = new CFabric;
+    JavaFabric* java = new JavaFabric;
     QCoreApplication a(argc, argv);
-    std::cout << generateProgram(ss) << std::endl;
-    delete ss;
+    std::cout << generateProgram(java) << std::endl;
+    delete C;
+    delete Csharp;
+    delete java;
     return a.exec();
 }
