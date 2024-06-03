@@ -6,7 +6,8 @@
 
 class Fabric {
 public:
-    virtual IClassUnit* createClass(std::string name) = 0;
+    virtual std::shared_ptr<IClassUnit>  createClass(std::string name) = 0;
+
      virtual std::shared_ptr<IMethodUnit> createMethod(std::string name, std::string vozvr, int Num) = 0;
  //   virtual IMethodUnit* createMethod(std::string name, std::string vozvr,int Num) = 0;
     virtual  std::shared_ptr<IPrintOperatorUnit>  createPrint2( std::string text)=0;
@@ -15,9 +16,9 @@ public:
 
 class CsharpFabric : public Fabric {
 public:
-    IClassUnit* createClass(std::string name)override
+    virtual std::shared_ptr<IClassUnit>  createClass(std::string name)override
     {
-        return new CsharpClassUnit(name);
+        return std::make_shared<CsharpClassUnit>(name);
     }
     std::shared_ptr<IMethodUnit> createMethod(std::string name, std::string vozvr, int Num) override {
        // IMethodUnit* CsharpMethodUnitPTR = new CsharpMethodUnit(name,vozvr, Num);
@@ -30,9 +31,9 @@ public:
 class CFabric: public Fabric {
 
 public:
-    IClassUnit* createClass(std::string name)override
+    std::shared_ptr<IClassUnit> createClass(std::string name)override
     {
-        return new CClassUnit(name);
+         return std::make_shared<CClassUnit>(name);
     }
     std::shared_ptr<IMethodUnit> createMethod(std::string name, std::string vozvr, int Num) override {
         // IMethodUnit* CsharpMethodUnitPTR = new CsharpMethodUnit(name,vozvr, Num);
@@ -44,8 +45,8 @@ public:
 
 class JavaFabric: public Fabric {
 
-public: IClassUnit* createClass(std::string name)override{
-        return new JavaClassUnit(name);
+public: std::shared_ptr<IClassUnit>  createClass(std::string name)override{
+       return std::make_shared<JavaClassUnit>(name);
     }
     std::shared_ptr<IMethodUnit> createMethod(std::string name, std::string vozvr, int Num) override {
         // IMethodUnit* CsharpMethodUnitPTR = new CsharpMethodUnit(name,vozvr, Num);

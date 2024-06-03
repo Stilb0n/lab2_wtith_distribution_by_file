@@ -8,7 +8,7 @@
 #include "fabric.cpp"
 std::string generateProgram(Fabric* fabric) { //mod
     //new
-      IClassUnit* classA = fabric->createClass("ke1ek");
+      auto classA = fabric->createClass("ke1ek");
       auto methodB = fabric->createMethod("testFunc1NEW", "void", 0);
     //  IPrintOperatorUnit* printA = fabric->createPrint2("fa123");
       auto print = fabric->createPrint2("F2");
@@ -25,8 +25,12 @@ std::string generateProgram(Fabric* fabric) { //mod
       methodNEW->add( print,1);
       classA->add(methodNEW,2);
      auto classB = fabric->createClass("CLASSINSIDE");
-     // classA->add(classB, 0); //тест пройден
-    //  classA->add(print,1)
+      classA->add(classB, 0); //тест пройден
+     classA->add(print,1);
+      methodNEW->add(classB);
+     methodB->add(methodD);
+      try  { print->add(classB,0); }  catch(const std::runtime_error& e){ std::cout << "Catched an exention std::runtime_error: " << e.what() << std::endl;
+      }
 /*   //old
 //      ClassUnit myClass("MyClass");
 
