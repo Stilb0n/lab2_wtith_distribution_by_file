@@ -4,48 +4,25 @@
 #include<vector>
 #include <memory>
 #include"methodunit.h"
-MethodUnit::MethodUnit(const std::string & name,
-                       const std::string & returnType, Flags
-                           flags): m_name(name),
-    m_returnType(returnType),
-    m_flags(flags) {}
-std::string MethodUnit::compile(unsigned int level)const {
-    std::string result = generateShift(level);
-    if (m_flags & STATIC) {
-        result += "static ";
-    } else if (m_flags & VIRTUAL) {
-        result += "virtual ";
-    }
-    result += m_returnType + " ";
-    result += m_name + "()";
-    if (m_flags & CONST) {
-        result += " const";
-    }
-    result += " {\n";
-    for (const auto & b: m_body) {
-        result += b -> compile(level + 1);
-    }
-    result += generateShift(level) + "}\n";
-    return result;
-}
+
 
 CsharpMethodUnit::CsharpMethodUnit(std::string  name,
                                    std::string returnType, Flags
                                        flags): m_name(name),
     m_returnType(returnType),
     m_flags(flags) {}
-CsharpMethodUnit::~CsharpMethodUnit(){
+//CsharpMethodUnit::~CsharpMethodUnit(){
 
-    for (  auto & elem : m_body)
-    {
-        delete (elem);
-        ++elem;
-    }
-};
+//    for (  auto & elem : m_body)
+//    {
+//        delete (elem);
+//        ++elem;
+//    }
+//};
 
-void CsharpMethodUnit::add(Unit * dd , Flags) {
-    m_body.push_back(dd);
-};
+//void CsharpMethodUnit::add(Unit * dd , Flags) {
+//    m_body.push_back(dd);
+//};
 std::string CsharpMethodUnit::compile(unsigned int level) const {        std::string result = generateShift(level);
     if (m_flags & STATIC) {
         result += "static ";
@@ -70,16 +47,16 @@ CMethodUnit::CMethodUnit(std::string  name,
                              flags) : m_name(name),
     m_returnType(returnType),
     m_flags(flags) {}
-CMethodUnit::~CMethodUnit(){
-    for (  auto & elem : m_body)
-    {
-        delete (elem);
-        ++elem;
-    }
-}
-void CMethodUnit::add(Unit * dd , Flags){
-    m_body.push_back(dd);
-}
+//CMethodUnit::~CMethodUnit(){
+//    for (  auto & elem : m_body)
+//    {
+//        delete (elem);
+//        ++elem;
+//    }
+//}
+//void CMethodUnit::add(Unit * dd , Flags){
+//    m_body.push_back(dd);
+//}
 std::string CMethodUnit::compile(unsigned int level) const  {
     std::string result = generateShift(level);
     if (m_flags & STATIC) {
@@ -105,30 +82,28 @@ JavaMethodUnit::JavaMethodUnit( std::string  name,
                    flags): m_name(name),
         m_returnType(returnType),
         m_flags(flags) {}
-JavaMethodUnit::~JavaMethodUnit(){
+//JavaMethodUnit::~JavaMethodUnit(){
 
-    for (  auto & elem : m_body)
-    {
-        delete (elem);
-        ++elem;
-    }
-}
-void JavaMethodUnit::add(Unit * dd , Flags){
-    m_body.push_back(dd);
-}
+//    for (  auto & elem : m_body)
+//    {
+//        delete (elem);
+//        ++elem;
+//    }
+//}
+//void JavaMethodUnit::add(Unit * dd , Flags){
+//    m_body.push_back(dd);
+//}
 std::string JavaMethodUnit::compile(unsigned int level) const{
     std::string result = generateShift(level);
-    if (m_flags & STATIC) {
+    if( m_flags & ABSTRACT ) { // проверка на наличие бита соответствующему наличию модификатора ABSTRACT
+        result += "abstract ";
+    } else if( m_flags & STATIC ) { // проверка на наличие бита соответствующему наличию модификатора STATIC
         result += "static ";
-    } else if (m_flags & FINAL) {
+    } else if( m_flags & FINAL ) { // проверка на наличие бита соответствующему наличию модификатора STATIC
         result += "final ";
     }
-    if (m_flags & ABSTRACT)
-    {
-        result += "abstract ";
-    }
-    if (m_flags & (VIRTUAL|CONST))
-    {throw "wrong modifier";}
+ //   if (m_flags & (VIRTUAL|CONST))
+ //   {throw "wrong modifier";}
     result += m_returnType + " ";
     result += m_name + "()";
 

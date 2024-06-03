@@ -8,9 +8,10 @@
 #include "fabric.cpp"
 std::string generateProgram(Fabric* fabric) { //mod
     //new
-      IClassUnit* classA = fabric->createClass("keek");
+      IClassUnit* classA = fabric->createClass("ke1ek");
       IMethodUnit* methodB = fabric->createMethod("testFunc1NEW", "void", 0);
-      IPrintOperatorUnit* printA = fabric->createPrint2("fa123");
+    //  IPrintOperatorUnit* printA = fabric->createPrint2("fa123");
+      auto print = fabric->createPrint2("F2");
       classA->add(methodB,0); // line 12
 
       IMethodUnit* methodC = fabric->createMethod("testFunc3NEW", "void",IMethodUnit::FINAL|IMethodUnit::STATIC);
@@ -20,34 +21,35 @@ std::string generateProgram(Fabric* fabric) { //mod
       classA->add(methodD,1);
 
       auto methodNEW = fabric->createMethod("testFunc4", "void", 1);
-      IPrintOperatorUnit* PrintOperatorA = printA;
-      methodNEW->add( PrintOperatorA,1);
+   //   IPrintOperatorUnit* PrintOperatorA = printA;
+      methodNEW->add( print,1);
       classA->add(methodNEW,2);
 
-   //old
-      ClassUnit myClass("MyClass");
+/*   //old
+//      ClassUnit myClass("MyClass");
 
-    myClass.add(
-        std::make_shared < MethodUnit > ("testFunc1", "void", 0),
-        ClassUnit::PUBLIC
-        );
-    myClass.add(
-        std::make_shared < MethodUnit > ("testFunc2", "void", MethodUnit::STATIC),
-        ClassUnit::PRIVATE
-        );
-    myClass.add(
-        std::make_shared < MethodUnit > ("testFunc3", "void", MethodUnit::VIRTUAL |
-                                                              MethodUnit::CONST),
-        ClassUnit::PUBLIC
-        );
-    auto method = std::make_shared < MethodUnit > ("testFunc4", "void",
-                                               MethodUnit::STATIC);
-    method -> add(std::make_shared < PrintOperatorUnit > ( "(Hello, world!\n)"));
-    myClass.add(method, ClassUnit::PROTECTED);
-    //old
+//    myClass.add(
+//        std::make_shared < MethodUnit > ("testFunc1", "void", 0),
+//        ClassUnit::PUBLIC
+//        );
+//    myClass.add(
+//        std::make_shared < MethodUnit > ("testFunc2", "void", MethodUnit::STATIC),
+//        ClassUnit::PRIVATE
+//        );
+//    myClass.add(
+//        std::make_shared < MethodUnit > ("testFunc3", "void", MethodUnit::VIRTUAL |
+//                                                              MethodUnit::CONST),
+//        ClassUnit::PUBLIC
+//        );
+//    auto method = std::make_shared < MethodUnit > ("testFunc4", "void",
+//                                               MethodUnit::STATIC);
+//    method -> add(std::make_shared < PrintOperatorUnit > ( "(Hello, world!\n)"));
+//    myClass.add(method, ClassUnit::PROTECTED);
+    */ //old
 
 
-    return myClass.compile()+classA->compile(); //mod
+  //  return myClass.compile()+classA->compile(); //mod
+      return classA->compile();
 }
 
 

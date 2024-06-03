@@ -8,7 +8,7 @@ class Fabric {
 public:
     virtual IClassUnit* createClass(std::string name) = 0;
     virtual IMethodUnit* createMethod(std::string name, std::string vozvr,int Num) = 0;
-    virtual IPrintOperatorUnit* createPrint2( std::string text)=0;
+    virtual  std::shared_ptr<IPrintOperatorUnit>  createPrint2( std::string text)=0;
     virtual ~Fabric(){};
 };
 
@@ -22,7 +22,7 @@ public:
         IMethodUnit* CsharpMethodUnitPTR = new CsharpMethodUnit(name,vozvr, Num);
         return CsharpMethodUnitPTR;
     }
-    IPrintOperatorUnit*  createPrint2 ( std::string  text)override  {return new CsharpPrintOperatorUnit(text);}
+     std::shared_ptr<IPrintOperatorUnit>  createPrint2 ( std::string  text)override  {return std::make_shared<CsharpPrintOperatorUnit>(text);}
      ~CsharpFabric(){};
 };
 
@@ -38,7 +38,7 @@ public:
         IMethodUnit* CMethodUnitPTR = new CMethodUnit(name,vozvr, Num);
         return CMethodUnitPTR;
     }
-    IPrintOperatorUnit*  createPrint2 ( std::string  text)override  {return new CPrintOperatorUnit(text);}
+     std::shared_ptr<IPrintOperatorUnit>  createPrint2 ( std::string  text)override  {return std::make_shared<CPrintOperatorUnit>(text);}
     ~CFabric(){}
 };
 
@@ -52,7 +52,7 @@ public: IClassUnit* createClass(std::string name)override{
 
         return JavaMethodUnitPTR;
     }
-    IPrintOperatorUnit*  createPrint2 ( std::string  text)override  {return new JavaPrintOperatorUnit(text);}
+    std::shared_ptr<IPrintOperatorUnit>  createPrint2 ( std::string  text)override  { return std::make_shared<JavaPrintOperatorUnit>(text);}
      ~JavaFabric(){};
 };
 
