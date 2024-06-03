@@ -31,10 +31,7 @@ std::string CsharpMethodUnit::compile(unsigned int level) const {        std::st
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if (m_flags & CONST)
-    {
-        result += " const";
-    }
+
     result += " {\n";
     for (const auto & b: m_body) {
         result += b -> compile(level + 1);

@@ -21,11 +21,11 @@ private: std::string m_name;
 };
 
 
-class IClassUnit : public Unit { public: virtual void add(Unit* unit, Flags flags) = 0; };
+class IClassUnit : public Unit { public: virtual void add(const std::shared_ptr< Unit >& unit, Flags flags ) = 0; };
 
 
 class CsharpClassUnit: public IClassUnit {
-public: enum AccessModifier {
+public: enum Acces1sModifier {
         PUBLIC,
         PROTECTED,
         PRIVATE,
@@ -35,11 +35,11 @@ public: enum AccessModifier {
     };
     static const std::vector < std::string > ACCESS_MODIFIERS_NEW;
 public: explicit CsharpClassUnit(const std::string & name);
-    ~CsharpClassUnit () ;
-    void add ( Unit *  method, Flags flags) override;
+ //   ~CsharpClassUnit () ;
+    void add (const std::shared_ptr< Unit >& unit, Flags flags ) override;
     std::string  compile(unsigned int level = 0)  const override;
 private: std::string m_name;
-    using Fields = std::vector < Unit * > ;
+    using Fields = std::vector<std::shared_ptr<Unit>>;
     std::vector < Fields > m_fields;
 };
 
@@ -53,11 +53,11 @@ public: enum AccessModifier {
     };
     static const std::vector < std::string > ACCESS_MODIFIERSC;
 public: explicit CClassUnit(const std::string & name);
-    ~CClassUnit ();
-    void add ( Unit *  method, Flags flags) override;
+   // ~CClassUnit ();
+    void add ( const std::shared_ptr< Unit >& unit, Flags flags ) override;
     std::string  compile(unsigned int level = 0)  const override;
 private: std::string m_name;
-    using Fields = std::vector < Unit * > ;
+    using Fields = std::vector<std::shared_ptr<Unit>>;
     std::vector < Fields > m_fields;
 };
 
@@ -69,11 +69,11 @@ public: enum AccessModifier {
     };
     static const std::vector < std::string > ACCESS_MODIFIERS;
 public: explicit JavaClassUnit(const std::string & name);
-    ~JavaClassUnit ();
-    void add ( Unit *  method, Flags flags) override;
+  //  ~JavaClassUnit ();
+    void add ( const std::shared_ptr< Unit >& unit, Flags flags ) override;
     std::string  compile(unsigned int level = 0)  const override;
 private: std::string m_name;
-    using Fields = std::vector < Unit * > ;
+   using Fields = std::vector<std::shared_ptr<Unit>>;
     std::vector < Fields > m_fields;
 };
 
