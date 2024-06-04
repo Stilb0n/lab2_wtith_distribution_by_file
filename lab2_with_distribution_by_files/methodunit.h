@@ -6,11 +6,11 @@
 
 class IMethodUnit : public Unit {
 public: enum Modifier {
-        STATIC = 1,
-        CONST = 1 << 1,
-        VIRTUAL = 1 << 2,
-        FINAL = 1 << 3,
-        ABSTRACT = 1 << 4
+        STATIC = 1, // первый бит = 1 => функция получит STATIC // C++, Java, C#
+        CONST = 1 << 1, // второй бит = 1 => функция получит CONST  // C++
+        VIRTUAL = 1 <<  2,   // третий бит = 1 => функция получит VIRTUAL    // C++, C#
+        FINAL = 1 << 3,     // четвернтый бит = 1 => функция получит FINAL  // Java
+        ABSTRACT = 1 << 4   // пятый бит = 1 => функция получит  // Java
     };
 
 public:

@@ -4,16 +4,7 @@
 #include"unit.h"
 #include <memory>
 
-class ClassUnit: public Unit {
-public:
 
-public: explicit ClassUnit(const std::string & name);
-    void add(const std::shared_ptr < Unit > & unit, Flags flags);
-    std::string compile(unsigned int level = 0) const;
-private: std::string m_name;
-    using Fields = std::vector < std::shared_ptr < Unit > > ;
-    std::vector < Fields > m_fields;
-};
 
 
 class IClassUnit : public Unit {
@@ -27,13 +18,19 @@ public:    enum AccessModifier // Здесь определены всевозм
         PRIVATE_PROTECTED,     // C#
     };
   static    const std::vector< std::string > ACCESS_MODIFIERS;   // инициализирован вне класса
-    virtual void add(const std::shared_ptr< Unit >& unit, Flags flags ) = 0; };
+    virtual void add(const std::shared_ptr< Unit >& unit, Flags flags ) = 0;
+  protected:
+  std::string m_name; // имя класса
+  using Fields = std::vector<std::shared_ptr<Unit>>;  // вектор член-функций/член-данных.
+  std::vector<Fields> m_fields;   // вектор, характеризующий модификаторы достпа и член-функции/член-данные, которые соответствуют определенному
+      // модификатору доступа.
+};
 
 
 class CsharpClassUnit: public IClassUnit {
 public:
 
-public: explicit CsharpClassUnit(const std::string & name);
+public: explicit CsharpClassUnit(const std::string & name);  // конструктор.  инициализирует имя класса
     void add (const std::shared_ptr< Unit >& unit, Flags flags ) override;
     std::string  compile(unsigned int level = 0)  const override;
 private: std::string m_name;
