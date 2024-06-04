@@ -10,7 +10,6 @@ private: std::string m_text;
 };
 
 class IPrintOperatorUnit : public Unit {
-    //public: virtual   std::string createPrint( )=0;
 public: virtual   std::string compile(unsigned int level = 0) const=0;
 };
 

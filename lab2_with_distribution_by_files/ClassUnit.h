@@ -5,13 +5,8 @@
 #include <memory>
 
 class ClassUnit: public Unit {
-public: enum AccessModifier {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE
-    };
-    static
-        const std::vector < std::string > ACCESS_MODIFIERS;
+public:
+
 public: explicit ClassUnit(const std::string & name);
     void add(const std::shared_ptr < Unit > & unit, Flags flags);
     std::string compile(unsigned int level = 0) const;
@@ -21,21 +16,24 @@ private: std::string m_name;
 };
 
 
-class IClassUnit : public Unit { public: virtual void add(const std::shared_ptr< Unit >& unit, Flags flags ) = 0; };
+class IClassUnit : public Unit {
+public:    enum AccessModifier // Здесь определены всевозможные спецификаторы доступа
+    {
+        PUBLIC,                     // C# C++ Java
+        PROTECTED,             // C# C++ Java
+        PRIVATE,               // C# C++ Java
+        INTERNAL,              // C#
+        PROTECTED_INTERNAL,    // C#
+        PRIVATE_PROTECTED,     // C#
+    };
+  static    const std::vector< std::string > ACCESS_MODIFIERS;   // инициализирован вне класса
+    virtual void add(const std::shared_ptr< Unit >& unit, Flags flags ) = 0; };
 
 
 class CsharpClassUnit: public IClassUnit {
-public: enum Acces1sModifier {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE,
-        PRIVATE_PROTECTED,
-        INTERNAL,
-        PROTECTED_INTERNAL
-    };
-    static const std::vector < std::string > ACCESS_MODIFIERS_NEW;
+public:
+
 public: explicit CsharpClassUnit(const std::string & name);
- //   ~CsharpClassUnit () ;
     void add (const std::shared_ptr< Unit >& unit, Flags flags ) override;
     std::string  compile(unsigned int level = 0)  const override;
 private: std::string m_name;
@@ -46,12 +44,8 @@ private: std::string m_name;
 
 
 class CClassUnit: public IClassUnit {
-public: enum AccessModifier {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE
-    };
-    static const std::vector < std::string > ACCESS_MODIFIERSC;
+public:
+
 public: explicit CClassUnit(const std::string & name);
    // ~CClassUnit ();
     void add ( const std::shared_ptr< Unit >& unit, Flags flags ) override;
@@ -62,14 +56,10 @@ private: std::string m_name;
 };
 
 class JavaClassUnit: public IClassUnit {
-public: enum AccessModifier {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE
-    };
-    static const std::vector < std::string > ACCESS_MODIFIERS;
+public:
+
 public: explicit JavaClassUnit(const std::string & name);
-  //  ~JavaClassUnit ();
+
     void add ( const std::shared_ptr< Unit >& unit, Flags flags ) override;
     std::string  compile(unsigned int level = 0)  const override;
 private: std::string m_name;
@@ -77,6 +67,7 @@ private: std::string m_name;
     std::vector < Fields > m_fields;
 };
 
+ const std::vector< std::string > IClassUnit::ACCESS_MODIFIERS = { "public", "protected", "private", "internal", "protected internal", "private protected" };
 
 
 
